@@ -21,7 +21,7 @@ collections:
       - label: "Zone / massif"
         name: "zone"
         widget: "select"
-        options: ["Calanques", "Sainte-Victoire", "Verdon", "Mercantour", "Sainte-Baume", "Luberon", "Ventoux", "Esterel"]
+        options: ["Massif de l'Etoile", "Massif du Garlaban ", "Calanques", "Sainte-Victoire", "Verdon", "Mercantour", "Sainte-Baume", "Luberon", "Ventoux", "Esterel"]
       - { label: "Auteur (pseudonyme)", name: "author", widget: "string" }
       - { label: "Date de publication", name: "date", widget: "datetime" }
       - { label: "Chapô / résumé", name: "excerpt", widget: "text", required: false }
