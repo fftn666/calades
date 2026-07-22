@@ -1,0 +1,7 @@
+{
+  "tags": "matos",
+  "layout": "layouts/article.njk",
+  "type": "matos",
+  "section": "matos",
+  "sectionLabel": "Matos"
+}

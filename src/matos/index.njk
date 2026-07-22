@@ -1,0 +1,25 @@
+---
+title: "Matos"
+layout: layouts/base.njk
+tags: []
+eleventyExcludeFromCollections: true
+permalink: /matos/
+---
+<div class="hero" style="padding-top:20px;">
+  <div class="eyebrow">Calades</div>
+  <h1 style="font-size:clamp(30px,7vw,52px);">Matos</h1>
+  <p class="sub">Tests et avis matériel, benchmarqués pour le climat et le terrain du Sud.</p>
+</div>
+
+<div class="section-head"><h2>Tous les articles</h2><div class="count">{{ collections.matos.length }} article{% if collections.matos.length > 1 %}s{% endif %}</div></div>
+
+<div class="grid">
+  {% for item in collections.matos | reverse %}
+  <a class="card" href="{{ item.url }}" style="display:flex;">
+    <div class="thumb" data-tag="Matos"></div>
+    <div class="cat">Matos</div>
+    <h3>{{ item.data.title }}</h3>
+    <div class="meta"><span>par {{ item.data.author }}</span></div>
+  </a>
+  {% endfor %}
+</div>

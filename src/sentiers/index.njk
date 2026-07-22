@@ -1,0 +1,28 @@
+---
+title: "Sentiers"
+layout: layouts/base.njk
+tags: []
+eleventyExcludeFromCollections: true
+permalink: /sentiers/
+---
+<div class="hero" style="padding-top:20px;">
+  <div class="eyebrow">Calades</div>
+  <h1 style="font-size:clamp(30px,7vw,52px);">Sentiers</h1>
+  <p class="sub">Les itinéraires trail à travers les massifs du Sud — Calanques, Sainte-Victoire, Verdon, Mercantour.</p>
+</div>
+
+<div class="section-head"><h2>Tous les sentiers</h2><div class="count">{{ collections.sentiers.length }} article{% if collections.sentiers.length > 1 %}s{% endif %}</div></div>
+
+<div class="grid">
+  {% for item in collections.sentiers | reverse %}
+  <a class="card" href="{{ item.url }}" style="display:flex;">
+    <div class="thumb" data-tag="Sentiers · {{ item.data.zone }}"></div>
+    <div class="cat">Sentiers</div>
+    <h3>{{ item.data.title }}</h3>
+    <div class="meta">
+      <span>par {{ item.data.author }}</span>
+      {% if item.data.distance_km %}<span class="stats">{{ item.data.distance_km }} KM · D+ {{ item.data.d_plus }} M</span>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>

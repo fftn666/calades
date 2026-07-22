@@ -1,0 +1,83 @@
+---
+title: "Accueil"
+layout: layouts/base.njk
+permalink: /
+---
+<section class="hero">
+  <div class="eyebrow">Média indépendant — Sud de la France</div>
+  <h1>Pour ceux qui<br><em id="rotatingPhrase">courent le calcaire</em></h1>
+  <p class="sub">{{ site.description }}</p>
+
+  <div class="profile">
+    <svg viewBox="0 0 1120 160" preserveAspectRatio="none">
+      <polyline points="0,130 90,120 170,60 240,95 330,40 420,88 520,20 610,70 700,45 800,100 900,55 1000,90 1120,75" fill="none" stroke-width="2"/>
+      <circle cx="240" cy="95" r="3"/>
+      <text x="220" y="82" class="peak-label">Sainte-Victoire</text>
+      <text x="220" y="115" class="peak-elev">1011 m</text>
+      <circle cx="520" cy="20" r="3"/>
+      <text x="470" y="14" class="peak-label">Mont Ventoux</text>
+      <circle cx="800" cy="100" r="3"/>
+      <text x="780" y="120" class="peak-label">Calanques</text>
+    </svg>
+  </div>
+</section>
+
+<div class="zones">
+  <div class="chip active">Tout le Sud</div>
+  <div class="chip">Calanques</div>
+  <div class="chip">Sainte-Victoire</div>
+  <div class="chip">Verdon</div>
+  <div class="chip">Mercantour</div>
+  <div class="chip">Luberon · Ventoux</div>
+  <div class="chip">Esterel</div>
+</div>
+
+{% set latest = (collections.sentiers | reverse | list) + (collections.matos | reverse | list) + (collections.recits | reverse | list) %}
+<section>
+  <div class="section-head"><h2>À la une</h2><div class="count">Mis à jour ce mois-ci</div></div>
+  <div class="grid">
+    {% for item in latest | limit(6) %}
+    <a class="card{% if loop.first %} big{% endif %}" href="{{ item.url }}" style="display:flex;">
+      <div class="thumb" data-tag="{{ item.data.sectionLabel }}{% if item.data.zone %} · {{ item.data.zone }}{% endif %}"></div>
+      <div class="cat">{{ item.data.sectionLabel }}</div>
+      <h3>{{ item.data.title }}</h3>
+      <div class="meta">
+        <span>par {{ item.data.author }}</span>
+        {% if item.data.distance_km %}<span class="stats">{{ item.data.distance_km }} KM · D+ {{ item.data.d_plus }} M</span>{% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="newsletter">
+  <h3>Notre newsletter ne vous spammera pas.</h3>
+  <form onsubmit="return false;">
+    <input type="email" placeholder="votre@email.com" required>
+    <button type="submit">S'inscrire →</button>
+  </form>
+</div>
+
+<script>
+  const rotatingPhrases = {{ site.rotatingPhrases | dump | safe }};
+  const phraseEl = document.getElementById('rotatingPhrase');
+  let lastIndex = -1;
+
+  function pickNextIndex(){
+    if (rotatingPhrases.length <= 1) return 0;
+    let i;
+    do { i = Math.floor(Math.random() * rotatingPhrases.length); } while (i === lastIndex);
+    return i;
+  }
+  function showPhrase(index){
+    phraseEl.classList.add('fade');
+    setTimeout(() => {
+      phraseEl.textContent = rotatingPhrases[index];
+      phraseEl.classList.remove('fade');
+      lastIndex = index;
+    }, 350);
+  }
+  lastIndex = pickNextIndex();
+  phraseEl.textContent = rotatingPhrases[lastIndex];
+  setInterval(() => showPhrase(pickNextIndex()), 60000);
+</script>

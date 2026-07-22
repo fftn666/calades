@@ -1,0 +1,7 @@
+{
+  "tags": "recits",
+  "layout": "layouts/article.njk",
+  "type": "recit",
+  "section": "recits",
+  "sectionLabel": "Récits"
+}

@@ -1,0 +1,89 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Active l'authentification via Netlify Identity (voir README pour l'activation)
+site_url: https://REMPLACER-PAR-TON-DOMAINE-NETLIFY.netlify.app
+display_url: https://REMPLACER-PAR-TON-DOMAINE-NETLIFY.netlify.app
+
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "sentiers"
+    label: "Sentiers"
+    folder: "src/sentiers"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "title", pattern: ".+" } # évite que index.njk apparaisse dans la liste
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - label: "Zone / massif"
+        name: "zone"
+        widget: "select"
+        options: ["Calanques", "Sainte-Victoire", "Verdon", "Mercantour", "Sainte-Baume", "Luberon", "Ventoux", "Esterel"]
+      - { label: "Auteur (pseudonyme)", name: "author", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Chapô / résumé", name: "excerpt", widget: "text", required: false }
+      - { label: "Distance (km)", name: "distance_km", widget: "number", value_type: "float" }
+      - { label: "Dénivelé positif D+ (m)", name: "d_plus", widget: "number" }
+      - { label: "Dénivelé négatif D- (m)", name: "d_moins", widget: "number" }
+      - label: "Difficulté"
+        name: "difficulte"
+        widget: "select"
+        options: ["Découverte", "Modéré", "Technique", "Ultra-distance"]
+      - { label: "Point de départ", name: "depart", widget: "string" }
+      - { label: "Période conseillée", name: "periode", widget: "string" }
+      - { label: "Points d'eau", name: "points_eau", widget: "string" }
+      - { label: "Balisage", name: "balisage", widget: "string" }
+      - { label: "Lien GPX", name: "gpx_url", widget: "string", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "matos"
+    label: "Matos"
+    folder: "src/matos"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "title", pattern: ".+" }
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Auteur (pseudonyme)", name: "author", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Chapô / résumé", name: "excerpt", widget: "text", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "recits"
+    label: "Récits"
+    folder: "src/recits"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "title", pattern: ".+" }
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Auteur (pseudonyme)", name: "author", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Chapô / résumé", name: "excerpt", widget: "text", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "À propos"
+        name: "a-propos"
+        file: "src/a-propos.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "reglages"
+    label: "Réglages du site"
+    files:
+      - label: "Général"
+        name: "site"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Description (sous-titre home)", name: "description", widget: "string" }
+          - label: "Phrases rotatives du titre"
+            name: "rotatingPhrases"
+            widget: "list"
+            hint: "Chaque ligne complète 'Pour ceux qui ...' — sans le point final."

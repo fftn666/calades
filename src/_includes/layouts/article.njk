@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+---
+<div class="breadcrumb">
+  <a href="/{{ section }}/">{{ sectionLabel }}</a>
+  {% if zone %}<span>/</span><a href="/sentiers/?zone={{ zone }}">{{ zone }}</a>{% endif %}
+</div>
+
+<div class="article-head">
+  <div class="eyebrow">{{ sectionLabel }}{% if zone %} · {{ zone }}{% endif %}</div>
+  <h1>{{ title }}</h1>
+  <div class="article-meta">
+    <span>par {{ author }}</span><span class="dot"></span>
+    <span>{{ date | dateFr }}</span>
+  </div>
+</div>
+
+<div class="cover" data-tag="{{ sectionLabel }}"></div>
+
+{% if type == "sentier" %}
+<div class="statbar">
+  <div class="stat"><span class="label">Distance</span><span class="value">{{ distance_km }} km</span></div>
+  <div class="stat"><span class="label">D+</span><span class="value">{{ d_plus }} m</span></div>
+  <div class="stat"><span class="label">D-</span><span class="value">{{ d_moins }} m</span></div>
+  <div class="stat"><span class="label">Difficulté</span><span class="value">{{ difficulte }}</span></div>
+</div>
+{% endif %}
+
+<div class="layout">
+  <div class="content">
+    {{ content | safe }}
+  </div>
+
+  {% if type == "sentier" %}
+  <div class="infobox">
+    <h4>Infos pratiques</h4>
+    <dl>
+      <div><dt>Départ</dt><dd>{{ depart }}</dd></div>
+      <div><dt>Période conseillée</dt><dd>{{ periode }}</dd></div>
+      <div><dt>Points d'eau</dt><dd>{{ points_eau }}</dd></div>
+      <div><dt>Balisage</dt><dd>{{ balisage }}</dd></div>
+      {% if gpx_url %}<div><dt>GPX</dt><dd><a href="{{ gpx_url }}" style="color:var(--ochre-deep);">Télécharger le tracé →</a></dd></div>{% endif %}
+    </dl>
+  </div>
+  {% endif %}
+</div>
+
+{% set related = collections.all | relatedItems(page.url) %}
+{% if related.length %}
+<div class="related">
+  <h2>À lire aussi</h2>
+  <div class="related-grid">
+    {% for item in related %}
+    <a class="card" href="{{ item.url }}" style="display:flex;">
+      <div class="thumb" data-tag="{{ item.data.sectionLabel }}"></div>
+      <div class="cat">{{ item.data.sectionLabel }}</div>
+      <h3>{{ item.data.title }}</h3>
+      <div class="meta"><span>par {{ item.data.author }}</span></div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

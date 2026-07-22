@@ -1,0 +1,25 @@
+---
+title: "Récits"
+layout: layouts/base.njk
+tags: []
+eleventyExcludeFromCollections: true
+permalink: /recits/
+---
+<div class="hero" style="padding-top:20px;">
+  <div class="eyebrow">Calades</div>
+  <h1 style="font-size:clamp(30px,7vw,52px);">Récits</h1>
+  <p class="sub">Aventures, portraits et culture du Sud.</p>
+</div>
+
+<div class="section-head"><h2>Tous les articles</h2><div class="count">{{ collections.recits.length }} article{% if collections.recits.length > 1 %}s{% endif %}</div></div>
+
+<div class="grid">
+  {% for item in collections.recits | reverse %}
+  <a class="card" href="{{ item.url }}" style="display:flex;">
+    <div class="thumb" data-tag="Récits"></div>
+    <div class="cat">Récits</div>
+    <h3>{{ item.data.title }}</h3>
+    <div class="meta"><span>par {{ item.data.author }}</span></div>
+  </a>
+  {% endfor %}
+</div>

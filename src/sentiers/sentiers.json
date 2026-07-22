@@ -1,0 +1,7 @@
+{
+  "tags": "sentiers",
+  "layout": "layouts/article.njk",
+  "type": "sentier",
+  "section": "sentiers",
+  "sectionLabel": "Sentiers"
+}
