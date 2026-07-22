@@ -3,8 +3,8 @@ backend:
   branch: main
 
 # Active l'authentification via Netlify Identity (voir README pour l'activation)
-site_url: https://REMPLACER-PAR-TON-DOMAINE-NETLIFY.netlify.app
-display_url: https://REMPLACER-PAR-TON-DOMAINE-NETLIFY.netlify.app
+site_url: https://calades.netlify.app
+display_url: CALADeS
 
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
