@@ -2,8 +2,7 @@
 title: "Saucony Peregrine 13 "
 author: Fred
 date: 2026-07-23T09:34:00.000+02:00
-excerpt: "Confortables, mais fragiles ! Elles n'ont pas tenu longtemps et c'est
-  bien dommage ! "
+excerpt: "Confortables, mais fragiles ! Elles n'ont pas tenu longtemps et c'est  bien dommage ! "
 ---
 À la recherche d'une nouvelle paire en début d'année, je me suis tourné vers cette Saucony Pergrine 13 lors d'une vente privée sur le site du même non.
 
